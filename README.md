@@ -1,15 +1,22 @@
 # Voltas AC IoT Remote Control
 
-ESPHome-based IR remote control for **Voltas Inverter Split AC** using the **RG52E1/BGEF** remote, built with ESP32 for seamless Home Assistant integration.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![ESPHome](https://img.shields.io/badge/ESPHome-2025.2+-blue.svg)](https://esphome.io/)
+[![Home Assistant](https://img.shields.io/badge/Home%20Assistant-Compatible-41BDF5.svg)](https://www.home-assistant.io/)
+
+ESPHome custom climate component for **Voltas Inverter Split AC** using the **RG52E1/BGEF** IR remote. Controls your Voltas AC from Home Assistant via an ESP32 with an IR LED — no cloud, fully local.
+
+> Works with Voltas split ACs that use the RG52E1/BGEF remote. May also work with other Voltas models using the same remote protocol.
 
 ## Features
 
-- 🌡️ **Temperature**: 17–30°C
-- ❄️ **Modes**: Cool, Heat, Dry, Fan, Auto
+- 🌡️ **Temperature Control**: 17–30°C with 1° steps
+- ❄️ **Modes**: Cool, Heat, Dry, Fan Only, Auto
 - 💨 **Fan Speed**: Auto, Low, Medium, High
-- 🔄 **Swing**: On/Off (vertical)
-- 💡 **LED Display**: On/Off
-- 📡 **Dynamic Protocol**: Signals generated on-the-fly — changing one parameter no longer resets others
+- 🔄 **Swing**: Vertical On/Off
+- 💡 **LED Display**: On/Off toggle
+- 📡 **Dynamic Protocol**: IR signals generated on-the-fly — all parameters (temp, mode, fan) are sent together in every command, so changing one never resets another
+- 🏠 **Fully Local**: No cloud dependencies, works entirely on your LAN
 
 ## Project Structure
 
