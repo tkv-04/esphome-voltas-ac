@@ -1,6 +1,6 @@
 # Voltas AC IoT Remote Control
 
-IR remote control system for **Voltas AC (Model: RG52E1/BGEF)**, built with ESPHome + ESP32 for Home Assistant integration.
+ESPHome-based IR remote control for **Voltas Inverter Split AC** using the **RG52E1/BGEF** remote, built with ESP32 for seamless Home Assistant integration.
 
 ## Features
 
