@@ -1,0 +1,94 @@
+# =============================================================
+#  Voltas AC - ESPHome Configuration
+#  Remote Model: RG52E1/BGEF
+# =============================================================
+
+esphome:
+  name: voltas-ac
+  friendly_name: Voltas_AC
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+logger:
+
+api:
+  encryption:
+    key: !secret api_key
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: "Voltas-Ac Fallback Hotspot"
+    password: !secret ap_password
+
+captive_portal:
+
+# -------------------- EXTERNAL COMPONENT --------------------
+external_components:
+  - source:
+      type: local
+      path: custom_components
+
+# -------------------- IR RECEIVER (for capturing signals) --------------------
+remote_receiver:
+  pin:
+    number: GPIO15
+    inverted: true
+    mode:
+      input: true
+      pullup: true
+  dump: all
+  tolerance: 55%
+
+# -------------------- IR TRANSMITTER (for sending signals) --------------------
+remote_transmitter:
+  pin: GPIO4
+  carrier_duty_percent: 50%
+  id: ir_transmitter
+
+# -------------------- CLIMATE (AC CONTROL) --------------------
+climate:
+  - platform: voltas_ac
+    name: "Voltas AC"
+    id: voltas_climate
+    transmitter_id: ir_transmitter
+
+# -------------------- LED DISPLAY SWITCH --------------------
+switch:
+  - platform: template
+    name: "AC Display"
+    id: ac_led_display
+    icon: "mdi:led-on"
+    optimistic: true
+    restore_mode: ALWAYS_ON
+    turn_on_action:
+      - lambda: |-
+          id(voltas_climate).send_led(true);
+    turn_off_action:
+      - lambda: |-
+          id(voltas_climate).send_led(false);
+
+# -------------------- DIAGNOSTICS --------------------
+binary_sensor:
+  - platform: status
+    name: "Status"
+
+sensor:
+  - platform: wifi_signal
+    name: "WiFi Signal"
+    update_interval: 60s
+
+  - platform: uptime
+    name: "Uptime"
+
+button:
+  - platform: restart
+    name: "Restart"

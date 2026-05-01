@@ -1,0 +1,27 @@
+# === ESPHome build artifacts ===
+.pioenvs/
+.piolibdeps/
+.pio/
+.esphome/
+__pycache__/
+*.pyc
+
+# === Secrets (NEVER commit) ===
+esphome/secrets.yaml
+
+# === Temporary/scratch files ===
+esphome/decode_protocol.py
+esphome/protocol_notes.py
+esphome/voltas_ac.h
+
+# === OS files ===
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === IDE ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
