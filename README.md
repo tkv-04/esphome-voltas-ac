@@ -21,6 +21,7 @@ voltas/
 ├── voltas.ino                          # Arduino Uno test sketch
 └── esphome/
     ├── voltas_ac.yaml                  # ESPHome configuration
+    ├── secrets.yaml.example            # Template for credentials
     └── custom_components/
         └── voltas_ac/
             ├── __init__.py             # Component registration
@@ -73,12 +74,22 @@ config/
         └── voltas_ac.h
 ```
 
-### 2. Configure WiFi
-Create or update `secrets.yaml`:
+### 2. Configure secrets
+Copy the template and fill in your credentials:
+```bash
+cp secrets.yaml.example secrets.yaml
+```
+
+Edit `secrets.yaml`:
 ```yaml
 wifi_ssid: "YourWiFiName"
 wifi_password: "YourWiFiPassword"
+api_key: "your-base64-api-key"
+ota_password: "your-ota-password"
+ap_password: "fallback-hotspot-password"
 ```
+
+> **Note**: `secrets.yaml` is gitignored and must never be committed.
 
 ### 3. Flash
 ```bash
