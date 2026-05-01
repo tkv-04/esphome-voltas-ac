@@ -144,4 +144,4 @@ STATUS / HELP
 
 ## License
 
-Personal IoT project. Use freely.
+[MIT License](LICENSE) — Use freely, just keep the credit.
